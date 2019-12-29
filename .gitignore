@@ -17,3 +17,6 @@
 
 #termite
 !termite/
+
+#rc files
+!rc/
