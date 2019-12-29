@@ -1,0 +1,19 @@
+# Whitelist pattern - ignore all subdirectories first
+*/
+
+# Now whitelist specific subdirectories
+
+#i3
+!i3/
+
+#nvim
+!nvim/
+
+#polybar
+!polybar/customscripts/
+!polybar/readme.md
+!polybar/config.ini
+!polybar/launch.sh
+
+#termite
+!termite/
