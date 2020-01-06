@@ -51,20 +51,25 @@ _comp_options+=(globdots)		# Include hidden files.
 
 
 #plugins=(git zsh-syntax-highlighting)
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting vi-mode)
 
 source $ZSH/oh-my-zsh.sh
+
+# Turn off all beeps
+unsetopt BEEP
+# Turn off autocomplete beeps
+unsetopt LIST_BEEP
 
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+#bindkey -M menuselect 'h' vi-backward-char
+#bindkey -M menuselect 'k' vi-up-line-or-history
+#bindkey -M menuselect 'l' vi-forward-char
+#bindkey -M menuselect 'j' vi-down-line-or-history
+#bindkey -v '^?' backward-delete-char
 
 #export PATH="$PATH:~/.cargo/bin"
 
