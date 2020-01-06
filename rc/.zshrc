@@ -49,6 +49,12 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
+
+#plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting)
+
+source $ZSH/oh-my-zsh.sh
+
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -60,33 +66,76 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-    echo 'test'
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-    echo 'test'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-plugins=(git zsh-syntax-highlighting vi-mode)
-
-source $ZSH/oh-my-zsh.sh
-
-
 #export PATH="$PATH:~/.cargo/bin"
 
+# V1
+# Change cursor shape for different vi modes.
+#function zle-keymap-select {
+#  if [[ ${KEYMAP} == vicmd ]] ||
+#     [[ $1 = 'block' ]]; then
+#    echo -ne '\e[1 q'
+#  elif [[ ${KEYMAP} == main ]] ||
+#       [[ ${KEYMAP} == viins ]] ||
+#       [[ ${KEYMAP} = '' ]] ||
+#       [[ $1 = 'beam' ]]; then
+#    echo -ne '\e[5 q'
+#  fi
+#}
+#zle -N zle-keymap-select
+#zle-line-init() {
+#    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+#    echo -ne "\e[5 q"
+#}
+#zle -N zle-line-init
+#echo -ne '\e[5 q' # Use beam shape cursor on startup.
+#preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# V2
+#terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
+#
+#function insert-mode () { echo "-- INSERT --" }
+#function normal-mode () { echo "-- NORMAL --" }
+#
+#precmd () {
+#    # yes, I actually like to have a new line, then some stuff and then 
+#    # the input line
+#    print -rP "
+#[%D{%a, %d %b %Y, %H:%M:%S}] %n %{$fg[blue]%}%m%{$reset_color%}"
+#
+#    # this is required for initial prompt and a problem I had with Ctrl+C or
+#    # Enter when in normal mode (a new line would come up in insert mode,
+#    # but normal mode would be indicated)
+#    PS1="%{$terminfo_down_sc$(insert-mode)$terminfo[rc]%}%~ $ "
+#}
+#function set-prompt () {
+#    case ${KEYMAP} in
+#      (vicmd)      VI_MODE="$(normal-mode)" ;;
+#      (main|viins) VI_MODE="$(insert-mode)" ;;
+#      (*)          VI_MODE="$(insert-mode)" ;;
+#    esac
+#    PS1="%{$terminfo_down_sc$VI_MODE$terminfo[rc]%}%~ $ "
+#}
+#
+#function zle-line-init zle-keymap-select {
+#    set-prompt
+#    zle reset-prompt
+#}
+#preexec () { print -rn -- $terminfo[el]; }
+#
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+
+#V3
+zle-keymap-select () {
+if [ $KEYMAP = vicmd ]; then
+    printf "\033[2 q"
+else
+    printf "\033[6 q"
+fi
+}
+zle -N zle-keymap-select
+zle-line-init () {
+zle -K viins
+printf "\033[6 q"
+}
+zle -N zle-line-init
