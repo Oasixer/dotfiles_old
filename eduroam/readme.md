@@ -1,7 +1,9 @@
-# Setting up eduroam on linux without a desktop environment
+# Setting up eduroam on linux without a desktop environment, using netctl instead of NetworkManager
 * I have only tested on arch linux but it should work on other distros. This may be helpful for rasperry pi, although you won't be able to ssh into it over eduroam anyway without getting it whitelisted by IT or something
+* NetworkManager should be able to accomplish the same thing, but this is only for netctl
 
 ## Instructions
+### First time setup
 * Install netctl if needed (it ships with arch linux)
 * Run the following
 
@@ -21,8 +23,10 @@ ip route | grep '^default' | awk '{print $5}' | head -n1
     * replace interface wlan0 with the copied inteface name
     * replace username and password
 
-* Run the following
-
+* Run the following any time you want to connect manually
 sudo ip link set your_copied_interface_name down
-
 netctl start eduroam
+
+### Auto connecting
+netctl enable eduroam
+
