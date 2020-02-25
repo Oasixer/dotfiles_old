@@ -187,11 +187,17 @@ bindsym $mod+g exec "google-chrome-stable"
 #}
 
 
-# PRINTSCREEN -> scrot - clipboard 
-bindsym Print exec scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+# Print -> scrot - clipboard 
+bindsym --release Print exec scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
 
-# Shift + PRINTSCREEN -> scrot (SELECTED AREA) - clipboard
-bindsym Shift+Print exec scrot -s -e '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+# Shift + Print -> scrot (selected) - clipboard
+bindsym --release Shift+Print exec scrot -s -e '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'
+
+# Ctrl + Print -> scrot - file
+bindsym --release Ctrl+Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/'
+
+# Ctrl + Shift Print -> scrot - file
+bindsym --release Ctrl+Shift+Print exec scrot -s '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/'
 
 # Ctrl + PRINTSCREEN ->
 # scrot & gimp - select window or rectangle

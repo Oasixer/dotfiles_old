@@ -24,4 +24,8 @@ xrandr --output eDP1 --off --output DVI-I-2-2 --mode 1920x1080 --primary --outpu
 sudo -E nvim file
 
 ## Grep from command result
-any_command | grep `find_this` | cut -f1 
+### Grep for command result from other command result
+any_command | grep `other_command` | cut -f1
+
+### Grep for string from command result
+any_command | grep "example search string" | cut -f1
