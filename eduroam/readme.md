@@ -6,9 +6,12 @@
 * Run the following
 
 cp ./eduroam/eduroam /etc/netctl/eduroam
-
 cp ./eduroam/wpa_supplicant_eduroam.conf /etc
-cp ./eduroam/Waterloo_Eduroam_CA_CERT.pem /etc
+
+* Connect to the uw-wifi-setup-no-encryption network
+    * download the eduroam-cat tool for linux (its a python script)
+    * scroll to the bottom of the script and copy the SSL Cert in the string
+    * paste it into a new file at /etc/eduroam_cert.pem
 
 * Copy the output of the following to get your wifi interface name:
 
