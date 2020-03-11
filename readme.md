@@ -41,3 +41,9 @@ vim <(ls -a)
         -E tells, that you want to use extended regex
         -o tells, that you want to print only the match
         -r grep is looking for result recursively in the folder
+
+# Config TODOs
+* Fix / remove displayLink, atleast at startup
+* get some transparent window sexyness
+* spotify in polybar
+* commands/shortcuts for opening a terminal to the current nvim location like shift+$mod+enter to i3
