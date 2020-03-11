@@ -47,3 +47,5 @@ vim <(ls -a)
 * get some transparent window sexyness
 * spotify in polybar
 * commands/shortcuts for opening a terminal to the current nvim location like shift+$mod+enter to i3
+* startup workspaces, ie. minimal, and one with chrome + spotify
+* make a script that turns bt on and connects to headphones
