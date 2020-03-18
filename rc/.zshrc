@@ -10,6 +10,7 @@ ZSH_THEME="birame"
 ENABLE_CORRECTION="true"
 
 export EDITOR="nvim"
+export BROWSER="google-chrome-stable"
 
 export term="xterm-256color"
 
@@ -27,6 +28,7 @@ alias rl="source ~/.zshrc"
 #max brightness
 alias brm="cat /sys/class/backlight/intel_backlight/max_brightness"
 alias br="/sys/class/backlight/intel_backlight"
+
 #alias steal="yaourt -S"
 
 #alias connect="nmcli device wifi connect"
