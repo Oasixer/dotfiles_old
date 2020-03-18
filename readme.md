@@ -42,6 +42,9 @@ vim <(ls -a)
         -o tells, that you want to print only the match
         -r grep is looking for result recursively in the folder
 
+* A recursive ag search for firefox on the root, excluding dirs, excluding some file patterns, showing hidden files, showing only the screen width of context, only on a single line, not showing errors
+ag -r --context=0 --hidden --silent --ignore-dir="proj" --ignore-dir="programs" --ignore-dir="node_modules" --ignore-dir="Documents" --ignore-dir="Downloads" --ignore="*.css" --ignore="*.scss" --ignore="*.svg" --ignore-dir="mozilla" --ignore-dir="lib" --ignore-dir="bin" --ignore-dir=".cache" firefox / |sed -E "s/(.{$COLUMNS}).*$/\1/"
+
 # Config TODOs
 * Fix / remove displayLink, atleast at startup
 * get some transparent window sexyness
