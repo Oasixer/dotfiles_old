@@ -10,10 +10,7 @@
 !nvim/
 
 #polybar
-!polybar/customscripts/
-!polybar/readme.md
-!polybar/config.ini
-!polybar/launch.sh
+!polybar/
 
 #termite
 !termite/
