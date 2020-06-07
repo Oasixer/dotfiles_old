@@ -45,6 +45,19 @@ vim <(ls -a)
 * A recursive ag search for firefox on the root, excluding dirs, excluding some file patterns, showing hidden files, showing only the screen width of context, only on a single line, not showing errors
 ag -r --context=0 --hidden --silent --ignore-dir="proj" --ignore-dir="programs" --ignore-dir="node_modules" --ignore-dir="Documents" --ignore-dir="Downloads" --ignore="*.css" --ignore="*.scss" --ignore="*.svg" --ignore-dir="mozilla" --ignore-dir="lib" --ignore-dir="bin" --ignore-dir=".cache" firefox / |sed -E "s/(.{$COLUMNS}).*$/\1/"
 
+## Date & Time
+* Issues with dual boot resetting time, see here https://wiki.archlinux.org/index.php/System_time#UTC_in_Windows
+* Keep system clock sync'd via NTP:
+    * Add the following to /etc/systemd/timesyncd.conf:
+
+[Time]
+NTP=0.north-america.pool.ntp.org 1.north-america.pool.ntp.org 2.north-america.pool.ntp.org 3.north-america.pool.ntp.org
+FallbackNTP=0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org
+
+    * then run:
+        * systemctl enable systemd-timesyncd.service
+        * systemctl start systemd-timesyncd.service
+
 # Config TODOs
 * Fix / remove displayLink, atleast at startup
 * get some transparent window sexyness
@@ -52,3 +65,4 @@ ag -r --context=0 --hidden --silent --ignore-dir="proj" --ignore-dir="programs" 
 * commands/shortcuts for opening a terminal to the current nvim location like shift+$mod+enter to i3
 * startup workspaces, ie. minimal, and one with chrome + spotify
 * make a script that turns bt on and connects to headphones
+* 
