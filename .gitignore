@@ -26,9 +26,3 @@
 
 #vimium (chrome extension)
 !vimium/
-
-#user directories (ie. documents, etc)
-!user-dirs.*
-
-#mimeapps (default apps for filetypes)
-!mimeapps.list
