@@ -10,6 +10,7 @@ Just my linux dotfiles and other config
 
 * FONT FUCKERY:
   * perl test-fonts.pl "🌔"
+  * perl test-fonts.pl ""
 
 # Useful system commands
 ## backlight
