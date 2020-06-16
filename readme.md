@@ -3,6 +3,15 @@ Just my linux dotfiles and other config
 
 * Note: there are instructions for setting up eduroam on linux, see the eduroam subdirectory
 
+# Themes used:
+* Polybar: polybar-themes: https://github.com/adi1090x/polybar-themes -> polybar-6, style 5
+* termite-style: https://github.com/adi1090x/termite-style/ -> material, font = hack
+* also related: to fix cursor in wrong position, fix locale https://wiki.archlinux.org/index.php/Locale
+
+* FONT FUCKERY:
+  * perl test-fonts.pl "🌔"
+  * perl test-fonts.pl ""
+
 # Useful system commands
 ## backlight
 xbacklight set n 
@@ -47,6 +56,7 @@ ag -r --context=0 --hidden --silent --ignore-dir="proj" --ignore-dir="programs" 
 
 ## Date & Time
 * Issues with dual boot resetting time, see here https://wiki.archlinux.org/index.php/System_time#UTC_in_Windows
+  * also https://www.howtogeek.com/323390/how-to-fix-windows-and-linux-showing-different-times-when-dual-booting/
 * Keep system clock sync'd via NTP:
     * Add the following to /etc/systemd/timesyncd.conf:
 
@@ -57,6 +67,7 @@ FallbackNTP=0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.p
     * then run:
         * systemctl enable systemd-timesyncd.service
         * systemctl start systemd-timesyncd.service
+
 
 # Config TODOs
 * Fix / remove displayLink, atleast at startup
