@@ -67,72 +67,13 @@ bindkey -v
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
-#bindkey -M menuselect 'h' vi-backward-char
-#bindkey -M menuselect 'k' vi-up-line-or-history
-#bindkey -M menuselect 'l' vi-forward-char
-#bindkey -M menuselect 'j' vi-down-line-or-history
-#bindkey -v '^?' backward-delete-char
+bindkey -M menuselect '^[h' vi-backward-char
+bindkey -M menuselect '^[k' vi-up-line-or-history
+bindkey -M menuselect '^[l' vi-forward-char
+bindkey -M menuselect '^[j' vi-down-line-or-history
 
-#export PATH="$PATH:~/.cargo/bin"
+# bindkey -v '^?' backward-delete-char
 
-# V1
-# Change cursor shape for different vi modes.
-#function zle-keymap-select {
-#  if [[ ${KEYMAP} == vicmd ]] ||
-#     [[ $1 = 'block' ]]; then
-#    echo -ne '\e[1 q'
-#  elif [[ ${KEYMAP} == main ]] ||
-#       [[ ${KEYMAP} == viins ]] ||
-#       [[ ${KEYMAP} = '' ]] ||
-#       [[ $1 = 'beam' ]]; then
-#    echo -ne '\e[5 q'
-#  fi
-#}
-#zle -N zle-keymap-select
-#zle-line-init() {
-#    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-#    echo -ne "\e[5 q"
-#}
-#zle -N zle-line-init
-#echo -ne '\e[5 q' # Use beam shape cursor on startup.
-#preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-# V2
-#terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
-#
-#function insert-mode () { echo "-- INSERT --" }
-#function normal-mode () { echo "-- NORMAL --" }
-#
-#precmd () {
-#    # yes, I actually like to have a new line, then some stuff and then 
-#    # the input line
-#    print -rP "
-#[%D{%a, %d %b %Y, %H:%M:%S}] %n %{$fg[blue]%}%m%{$reset_color%}"
-#
-#    # this is required for initial prompt and a problem I had with Ctrl+C or
-#    # Enter when in normal mode (a new line would come up in insert mode,
-#    # but normal mode would be indicated)
-#    PS1="%{$terminfo_down_sc$(insert-mode)$terminfo[rc]%}%~ $ "
-#}
-#function set-prompt () {
-#    case ${KEYMAP} in
-#      (vicmd)      VI_MODE="$(normal-mode)" ;;
-#      (main|viins) VI_MODE="$(insert-mode)" ;;
-#      (*)          VI_MODE="$(insert-mode)" ;;
-#    esac
-#    PS1="%{$terminfo_down_sc$VI_MODE$terminfo[rc]%}%~ $ "
-#}
-#
-#function zle-line-init zle-keymap-select {
-#    set-prompt
-#    zle reset-prompt
-#}
-#preexec () { print -rn -- $terminfo[el]; }
-#
-#zle -N zle-line-init
-#zle -N zle-keymap-select
-
-#V3
 zle-keymap-select () {
 if [ $KEYMAP = vicmd ]; then
     printf "\033[2 q"
@@ -146,3 +87,15 @@ zle -K viins
 printf "\033[6 q"
 }
 zle -N zle-line-init
+
+PATH="/home/k/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/k/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/k/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/k/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/k/perl5"; export PERL_MM_OPT;
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/k/programs/google-cloud-sdk/path.zsh.inc' ]; then . '/home/k/programs/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/k/programs/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/k/programs/google-cloud-sdk/completion.zsh.inc'; fi
