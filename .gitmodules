@@ -1,4 +1,4 @@
 [submodule "nvim"]
     path = nvim
-    url = git://github.com/Oasixer/nvim.git
+    url = git@github.com:Oasixer/nvim.git
     update = merge
